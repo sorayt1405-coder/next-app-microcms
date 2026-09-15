@@ -76,19 +76,34 @@ type InfoBoxBlock = {
 
 export default async function BlogPage({
     params,
+    searchParams,
 }: {
     params: Promise<{ slug: string }>;
+    searchParams: Promise<{ draftKey?: string }>;
 }) {
     const { slug } = await params;
+    const { draftKey } = await searchParams;
 
-    const data = await client.getList<Blog>({
-        endpoint: 'blog',
-        queries: {
-            filters: `slug[equals]${slug}`,
-        },
-    });
+    let blog: Blog | undefined;
 
-    const blog = data.contents[0];
+    if (draftKey) {
+        blog = await client.getListDetail<Blog>({
+            endpoint: 'blog',
+            contentId: slug,
+            queries: {
+                draftKey,
+            },
+        });
+    } else {
+        const data = await client.getList<Blog>({
+            endpoint: 'blog',
+            queries: {
+                filters: `slug[equals]${slug}`,
+            },
+        });
+
+        blog = data.contents[0];
+    }
 
     if (!blog) {
         return <div>記事が見つかりませんでした。</div>;
