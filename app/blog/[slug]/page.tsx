@@ -13,7 +13,7 @@ type TextBlock = {
 
 type ImageBlock = {
     fieldId: 'ImageBlock';
-    Image: {
+    image: {
         url: string;
         width: number;
         height: number;
@@ -29,7 +29,7 @@ type QuoteBlock = {
 
 type GalleryImage = {
     fieldId: 'GalleryImage';
-    Image: {
+    image: {
         url: string;
         width: number;
         height: number;
