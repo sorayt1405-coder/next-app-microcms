@@ -2,7 +2,7 @@ import { client } from '../../../libs/client';
 
 type HeadingBlock = {
     fieldId: 'HeadingBlock';
-    level: string;
+    level: string[];
     text: string;
 };
 
