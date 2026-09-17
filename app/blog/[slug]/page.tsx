@@ -70,7 +70,7 @@ type Blog = {
 
 type InfoBoxBlock = {
     fieldId: 'InfoBoxBlock';
-    type: string;
+    type: string[];
     body: string;
 };
 
@@ -121,21 +121,6 @@ export default async function BlogPage({
                         }
 
                         if (block.level?.includes('h3')) {
-                            return <h3 key={index}>{block.text}</h3>;
-                        }
-
-                        return <h2 key={index}>{block.text}</h2>;
-                    }
-
-
-                    if (block.fieldId === 'HeadingBlock') {
-                        console.log('HeadingBlock:', block);
-
-                        if (block.level === 'h2') {
-                            return <h2 key={index}>{block.text}</h2>;
-                        }
-
-                        if (block.level === 'h3') {
                             return <h3 key={index}>{block.text}</h3>;
                         }
 
