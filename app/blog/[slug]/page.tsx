@@ -139,7 +139,7 @@ export default async function BlogPage({
 
                     if (block.fieldId === 'ImageBlock') {
                         return (
-                            <figure key={index}>
+                            <figure key={index} className="blog-image">
                                 <img
                                     src={block.image.url}
                                     alt={block.caption ?? ''}
@@ -180,9 +180,9 @@ export default async function BlogPage({
 
                     if (block.fieldId === 'GalleryBlock') {
                         return (
-                            <div key={index}>
+                            <div key={index} className="blog-gallery">
                                 {block.GalleryBlock.map((item, itemIndex) => (
-                                    <figure key={itemIndex}>
+                                    <figure key={itemIndex} className="blog-gallery-item">
                                         <img
                                             src={item.image.url}
                                             alt={item.caption ?? ''}
