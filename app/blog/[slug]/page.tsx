@@ -116,6 +116,21 @@ export default async function BlogPage({
             <div className="blog-content">
                 {blog.contents.map((block, index) => {
                     if (block.fieldId === 'HeadingBlock') {
+                        if (block.level?.includes('h2')) {
+                            return <h2 key={index}>{block.text}</h2>;
+                        }
+
+                        if (block.level?.includes('h3')) {
+                            return <h3 key={index}>{block.text}</h3>;
+                        }
+
+                        return <h2 key={index}>{block.text}</h2>;
+                    }
+
+
+                    if (block.fieldId === 'HeadingBlock') {
+                        console.log('HeadingBlock:', block);
+
                         if (block.level === 'h2') {
                             return <h2 key={index}>{block.text}</h2>;
                         }
@@ -126,6 +141,7 @@ export default async function BlogPage({
 
                         return <h2 key={index}>{block.text}</h2>;
                     }
+
 
                     if (block.fieldId === 'TextBlock') {
                         return (
