@@ -71,6 +71,7 @@ type Blog = {
 type InfoBoxBlock = {
     fieldId: 'InfoBoxBlock';
     type: string[];
+    title?: string;
     body: string;
 };
 
@@ -156,22 +157,37 @@ export default async function BlogPage({
 
                     if (block.fieldId === 'QuoteBlock') {
                         return (
-                            <blockquote key={index}>
+                            <blockquote key={index} className="quote-box">
                                 <div
+                                    className="quote-box-body"
                                     dangerouslySetInnerHTML={{ __html: block.body }}
                                 />
 
                                 {block.source && (
-                                    <cite>{block.source}</cite>
+                                    <cite className="quote-box-source">
+                                        {block.source}
+                                    </cite>
                                 )}
                             </blockquote>
                         );
                     }
 
                     if (block.fieldId === 'InfoBoxBlock') {
+                        const boxType = block.type?.[0]?.toLowerCase() || 'memo';
+
                         return (
-                            <div key={index} data-type={block.type}>
+                            <div
+                                key={index}
+                                className={`info-box info-box-${boxType}`}
+                            >
+                                {boxType !== 'note' && block.title && (
+                                    <div className="info-box-title">
+                                        {block.title}
+                                    </div>
+                                )}
+
                                 <div
+                                    className="info-box-body"
                                     dangerouslySetInnerHTML={{ __html: block.body }}
                                 />
                             </div>

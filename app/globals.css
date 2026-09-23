@@ -106,3 +106,193 @@ body {
     gap: 24px;
   }
 }
+
+/* ========================================
+   Info Box 共通
+======================================== */
+
+.info-box {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 2rem 1.5rem 1.5rem;
+  border: 3px solid;
+  border-radius: 4px;
+}
+
+.info-box-title {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-50%);
+  padding: 0 0.6rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.info-box-body> :first-child {
+  margin-top: 0;
+}
+
+.info-box-body> :last-child {
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   Point
+======================================== */
+
+.info-box-point {
+  background-color: #f2f8f5;
+  border-color: #8eb8a5;
+}
+
+.info-box-point .info-box-title {
+  background-color: #f2f8f5;
+  color: #527c6a;
+}
+
+
+/* ========================================
+   Warning
+======================================== */
+
+.info-box-warning {
+  background-color: #fff5f2;
+  border-color: #d9a096;
+}
+
+.info-box-warning .info-box-title {
+  background-color: #fff5f2;
+  color: #a7655b;
+}
+
+
+/* ========================================
+   Memo
+======================================== */
+
+.info-box-memo {
+  background-color: #f5f3fa;
+  border-color: #aca3c5;
+}
+
+.info-box-memo .info-box-title {
+  background-color: #f5f3fa;
+  color: #746b91;
+}
+
+/* ========================================
+   Note
+======================================== */
+
+.info-box-note {
+  --note-line: #a9a39b;
+  --note-bg: #faf9f7;
+  --note-overhang: 10px;
+
+  position: relative;
+  margin: 2.5rem 10px;
+  padding: 1.5rem;
+  background-color: var(--note-bg);
+
+  border: none;
+  border-radius: 0;
+}
+
+
+/* 横線 */
+.info-box-note::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: calc(var(--note-overhang) * -1);
+
+  width: calc(100% + var(--note-overhang) * 2);
+  height: calc(100% + 1px);
+
+  border-top: 2px solid var(--note-line);
+  border-bottom: 2px solid var(--note-line);
+
+  pointer-events: none;
+}
+
+
+/* 縦線 */
+.info-box-note::after {
+  content: "";
+  position: absolute;
+
+  top: calc(var(--note-overhang) * -1);
+  left: 0;
+
+  width: calc(100% + 1px);
+  height: calc(100% + var(--note-overhang) * 2);
+
+  border-left: 2px solid var(--note-line);
+  border-right: 2px solid var(--note-line);
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Quote
+======================================== */
+
+.quote-box {
+  position: relative;
+
+  margin: 2.5rem 0;
+  padding: 2.5rem 1.5rem 1.5rem;
+
+  background-color: #f5eee9;
+
+  border: none;
+  border-top: 4px solid #b99d8b;
+
+  color: #4f4843;
+}
+
+
+/* クオテーションマーク */
+
+.quote-box::before {
+  content: "“";
+
+  position: absolute;
+  top: 0.2rem;
+  left: 1rem;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.5rem;
+  line-height: 1;
+
+  color: #b99d8b;
+}
+
+
+/* 本文 */
+
+.quote-box-body> :first-child {
+  margin-top: 0;
+}
+
+.quote-box-body> :last-child {
+  margin-bottom: 0;
+}
+
+
+/* 引用元 */
+
+.quote-box-source {
+  display: block;
+  margin-top: 1rem;
+
+  text-align: right;
+  font-size: 0.9rem;
+  font-style: normal;
+
+  color: #81736a;
+}
