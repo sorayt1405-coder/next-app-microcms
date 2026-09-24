@@ -48,6 +48,12 @@ type LinkCardBlock = {
         id: string;
         title: string;
         slug: string;
+        description?: string;
+        thumbnail?: {
+            url: string;
+            width: number;
+            height: number;
+        };
     };
     externalUrl?: string;
 };
@@ -217,30 +223,71 @@ export default async function BlogPage({
 
                     if (block.fieldId === 'LinkCardBlock') {
                         if (block.internalArticle) {
+                            const article = block.internalArticle;
+
                             return (
-                                <div key={index}>
-                                    <a href={`/blog/${block.internalArticle.slug}`}>
-                                        {block.internalArticle.title}
-                                    </a>
-                                </div>
+                                <a
+                                    key={index}
+                                    href={`/blog/${article.slug}`}
+                                    className="blog-card"
+                                >
+                                    <div className="blog-card-content">
+                                        <div className="blog-card-title">
+                                            {article.title}
+                                        </div>
+
+                                        {article.description && (
+                                            <p className="blog-card-description">
+                                                {article.description}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {article.thumbnail && (
+                                        <div className="blog-card-image">
+                                            <img
+                                                src={article.thumbnail.url}
+                                                alt=""
+                                                width={article.thumbnail.width}
+                                                height={article.thumbnail.height}
+                                            />
+                                        </div>
+                                    )}
+                                </a>
                             );
                         }
 
                         if (block.externalUrl) {
                             return (
-                                <div key={index}>
-                                    <a
-                                        href={block.externalUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {block.externalUrl}
-                                    </a>
-                                </div>
+                                <a
+                                    key={index}
+                                    href={block.externalUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="blog-card blog-card-external"
+                                >
+                                    <div className="blog-card-content">
+                                        <div className="blog-card-title">
+                                            {block.externalUrl}
+                                        </div>
+                                    </div>
+                                </a>
                             );
                         }
+                    }
 
-                        return null;
+                    if (block.externalUrl) {
+                        return (
+                            <div key={index}>
+                                <a
+                                    href={block.externalUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {block.externalUrl}
+                                </a>
+                            </div>
+                        );
                     }
 
                     return null;
